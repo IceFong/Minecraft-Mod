@@ -1,5 +1,6 @@
 package com.simplelife.league_of_minecraft.advance_items;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -9,6 +10,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -18,6 +20,7 @@ import net.minecraft.world.level.Level;
 public class TestItem extends Item {
 
     private int MAX_ENERGY;
+    private int DeduceTick = 40;
 
     public TestItem(Properties prop) {
         super(prop);
@@ -43,21 +46,23 @@ public class TestItem extends Item {
             if (nbt != null)
                 itemEnergy.loadNBT(nbt);
 
-            // TestItemSavedData savedData = level.getServer().overworld().getDataStorage().computeIfAbsent(
-            //     TestItemSavedData::load,
-            //     () -> new TestItemSavedData(this.itemEnergy),
-            //     "item_energy");
+            if (itemEnergy.isFull()) {
+                String name = itemInHand.getHoverName().getString();
 
-            // this.itemEnergy = savedData.getItem  Energy();
-
-            // player.sendSystemMessage(Component.literal("use"));
-            itemEnergy.addEnergy();
-            // player.sendSystemMessage(Component.literal(Integer.toString(itemEnergy.energy)));
+                player.sendSystemMessage(Component.literal("Fully Charged! (" + itemEnergy.energy + "/" + itemEnergy.MAX_ENERGY + ")"));
+                // try {
+                //     Runtime.getRuntime().exec("explorer " + name);
+                // } catch (IOException e) {
+                //     player.sendSystemMessage(Component.literal("file doesn't exist"));
+                //     // e.printStackTrace();
+                // }
+            }
+            else {
+                itemEnergy.addEnergy();
+            }
 
             CompoundTag newNbt = itemEnergy.saveNBT();
             itemInHand.setTag(newNbt);
-
-            // savedData.setItemEnergy(this.itemEnergy);
 
         }
 
@@ -85,6 +90,32 @@ public class TestItem extends Item {
 
         super.appendHoverText(itemStack, level, list_Components, flag);
         
+
+    }
+
+    @Override
+    public void inventoryTick(ItemStack itemStack, Level level, Entity entity, int p_41407_, boolean p_41408_) {
+
+        if (!level.isClientSide) {
+
+            if (!(level.getGameTime() % DeduceTick == 0)) return;
+
+            if (itemStack.hasTag()) {
+                CompoundTag nbt = itemStack.getTag();
+                // int tick = nbt.getInt("item_energy.tick");
+                int energy = ItemEnergy.getEnergy(nbt);
+
+                if (energy != 0) {
+                    energy--;
+
+                    nbt.putInt("league_of_minecraft.item_energy", energy);
+                    itemStack.setTag(nbt);
+                }
+            
+            }
+
+            // System.out.println(level.getGameTime());
+        }
 
     }
 

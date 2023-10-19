@@ -20,9 +20,9 @@ public class ItemEnergy {
         this.MAX_ENERGY = maxEnergy;
     }
 
-    public int getEnergy()  {
-        return this.energy;
-    }
+    // public int getEnergy()  {
+    //     return this.energy;
+    // }
 
     public void addEnergy() {
         this.energy++;
@@ -58,13 +58,6 @@ public class ItemEnergy {
     public void loadNBT(CompoundTag nbt) {
         this.energy = nbt.getInt("league_of_minecraft.item_energy");
         this.MAX_ENERGY = nbt.getInt("league_of_minecraft.max_item_energy");
-
-        // System.out.println("loaded energy:" + energy);
-        // System.out.println("loaded MAX_ENERGY:" + MAX_ENERGY);
-
-        // ItemEnergy r = new ItemEnergy(energy, MAX_ENERGY);
-
-        // return r;
     }
 
     public static int getEnergy(CompoundTag nbt) {
