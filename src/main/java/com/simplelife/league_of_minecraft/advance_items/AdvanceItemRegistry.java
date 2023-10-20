@@ -1,18 +1,11 @@
 package com.simplelife.league_of_minecraft.advance_items;
 
-import org.apache.logging.log4j.core.config.plugins.util.ResolverUtil.Test;
-
 import com.simplelife.league_of_minecraft.MainMod;
 
-import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
 
 public class AdvanceItemRegistry {

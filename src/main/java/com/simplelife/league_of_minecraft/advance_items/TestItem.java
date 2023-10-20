@@ -1,6 +1,5 @@
 package com.simplelife.league_of_minecraft.advance_items;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -8,7 +7,6 @@ import javax.annotation.Nullable;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -47,7 +45,7 @@ public class TestItem extends Item {
                 itemEnergy.loadNBT(nbt);
 
             if (itemEnergy.isFull()) {
-                String name = itemInHand.getHoverName().getString();
+                // String name = itemInHand.getHoverName().getString();
 
                 player.sendSystemMessage(Component.literal("Fully Charged! (" + itemEnergy.energy + "/" + itemEnergy.MAX_ENERGY + ")"));
                 // try {

@@ -1,16 +1,12 @@
 package com.simplelife.league_of_minecraft.basic_items;
 
 import com.simplelife.league_of_minecraft.MainMod;
+import com.simplelife.league_of_minecraft.advance_items.item_functions.ABILITY_TYPE;
 
-import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ItemRegistry {
@@ -24,6 +20,7 @@ public class ItemRegistry {
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
+    
 
     // public static final RegistryObject<Item> NASUS_ITEM = null;
 
