@@ -1,10 +1,10 @@
-package com.simplelife.league_of_minecraft.advance_items.item_functions;
+package com.simplelife.league_of_minecraft.champion;
 
 public class Garen extends Champion {
     
     public Garen() {
         
-        _P = new GeneralAbility(0.0f, ABILITY_TYPE.PASSIVE) {
+        _P = new GeneralAbility(0, ABILITY_TYPE.PASSIVE) {
 
             @Override
             public void castAbility() {
@@ -14,17 +14,17 @@ public class Garen extends Champion {
             
         };
 
-        _Q = new GeneralAbility(5.0f, ABILITY_TYPE.ACTIVE) {
+        _Q = new GeneralAbility(5, ABILITY_TYPE.ACTIVE) {
 
             @Override
             public void castAbility() {
-                System.out.println("Forward!!!");
                 super.castAbility();
+                System.out.println("Forward!!!");
             }
             
         };
 
-        _W = new GeneralAbility(10.0f, ABILITY_TYPE.ACTIVE) {
+        _W = new GeneralAbility(10, ABILITY_TYPE.ACTIVE) {
 
             @Override
             public void castAbility() {
@@ -34,7 +34,7 @@ public class Garen extends Champion {
             
         };
 
-        _E = new GeneralAbility(10.0f, ABILITY_TYPE.ACTIVE) {
+        _E = new GeneralAbility(10, ABILITY_TYPE.ACTIVE) {
 
             @Override
             public void castAbility() {
@@ -44,7 +44,7 @@ public class Garen extends Champion {
             
         };
 
-        _R = new GeneralAbility(10.0f, ABILITY_TYPE.ACTIVE) {
+        _R = new GeneralAbility(20, ABILITY_TYPE.ACTIVE) {
 
             @Override
             public void castAbility() {
@@ -57,6 +57,12 @@ public class Garen extends Champion {
 
     }
     
-    
+    public Garen (Champion champion) {
+        _P = champion._P;
+        _Q = champion._Q;
+        _W = champion._W;
+        _E = champion._E;
+        _R = champion._R;
+    }
 
 }

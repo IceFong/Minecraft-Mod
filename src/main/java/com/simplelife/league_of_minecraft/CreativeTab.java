@@ -23,9 +23,9 @@ public class CreativeTab {
             new ResourceLocation(MainMod.MODID, "tab"), 
             builder -> {
                 builder.title(Component.translatable("creativemodetab.league_of_minecraft_tab"))
-                .icon(() -> new ItemStack(ItemRegistry.GAREN_ITEM.get()))
+                .icon(() -> new ItemStack(AdvanceItemRegistry.GAREN_ITEM.get()))
                 .displayItems((params, output) -> {
-                    output.accept(ItemRegistry.GAREN_ITEM.get());
+                    output.accept(AdvanceItemRegistry.GAREN_ITEM.get());
                     output.accept(AdvanceItemRegistry.TEST_ITEM.get());
                     // output.accept(ItemRegistry.NASUS_ITEM.get());
                 });

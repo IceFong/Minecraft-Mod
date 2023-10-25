@@ -3,10 +3,17 @@ package com.simplelife.league_of_minecraft;
 import com.mojang.logging.LogUtils;
 import com.simplelife.league_of_minecraft.advance_items.AdvanceItemRegistry;
 import com.simplelife.league_of_minecraft.basic_items.ItemRegistry;
+import com.simplelife.league_of_minecraft.client_keybind.ClientClickHandler;
+import com.simplelife.league_of_minecraft.client_keybind.KeyEventHandler;
+
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.TickEvent.ClientTickEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
+import net.minecraftforge.eventbus.api.GenericEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -41,23 +48,15 @@ public class MainMod
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
-
-        // // Register the Deferred Register to the mod event bus so blocks get registered
-        // BLOCKS.register(modEventBus);
-        // // Register the Deferred Register to the mod event bus so items get registered
-        // ITEMS.register(modEventBus);
-
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-
-        
-
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
         //Manual
         ItemRegistry.register(modEventBus);
         AdvanceItemRegistry.register(modEventBus);
+   
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
@@ -92,9 +91,26 @@ public class MainMod
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-            // // Some client setup code
-            // LOGGER.info("HELLO FROM CLIENT SETUP");
-            // LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+            
         }
+        
     }
+
+    // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
+    // @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
+    // public static class ClientModEvents2
+    // {
+    //     @SubscribeEvent
+    //     public static void onClientTick(ClientTickEvent event) {
+    //         if (event.phase == TickEvent.Phase.END) {
+    //             while (KeyEventHandler.EXAMPLE_MAPPING.get().consumeClick()) {
+    //                 //Execute logic perform on click
+    //                 System.out.println("xxxx");
+    //             }
+    //         }
+    //     }
+        
+    // }
+
+    
 }

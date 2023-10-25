@@ -1,7 +1,7 @@
 package com.simplelife.league_of_minecraft.basic_items;
 
 import com.simplelife.league_of_minecraft.MainMod;
-import com.simplelife.league_of_minecraft.advance_items.item_functions.ABILITY_TYPE;
+import com.simplelife.league_of_minecraft.champion.ABILITY_TYPE;
 
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -13,9 +13,9 @@ public class ItemRegistry {
     
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MainMod.MODID);
 
-    public static final RegistryObject<Item> GAREN_ITEM = ITEMS.register("garen_item", () -> 
-        new Item( new Item.Properties() )
-    );
+    // public static final RegistryObject<Item> GAREN_ITEM = ITEMS.register("garen_item", () -> 
+    //     new Item( new Item.Properties() )
+    // );
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

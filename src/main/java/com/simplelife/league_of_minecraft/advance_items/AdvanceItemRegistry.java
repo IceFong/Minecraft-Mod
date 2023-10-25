@@ -16,6 +16,10 @@ public class AdvanceItemRegistry {
         new TestItem( new Item.Properties().stacksTo(1), 10 )
     );
 
+    public static final RegistryObject<Item> GAREN_ITEM = ITEMS.register("garen_item", () -> 
+        new GarenItem( new Item.Properties().stacksTo(1) ) 
+    );
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
