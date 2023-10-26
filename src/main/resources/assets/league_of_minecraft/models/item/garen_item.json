@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:item/generated",
+    "textures": {
+        "layer0": "league_of_minecraft:item/garen_item"
+    }
+}
