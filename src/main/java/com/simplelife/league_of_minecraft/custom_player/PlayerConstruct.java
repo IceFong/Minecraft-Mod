@@ -7,7 +7,7 @@ import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = MainMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = MainMod.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class PlayerConstruct {
     
     @SubscribeEvent
