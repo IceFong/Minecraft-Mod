@@ -5,6 +5,10 @@ import javax.annotation.Nullable;
 import net.minecraft.nbt.CompoundTag;
 
 public abstract class Champion {
+
+    String henshinName;
+
+    HenshinTimer timer;
     
     GeneralAbility _P;
     GeneralAbility _Q;
@@ -14,8 +18,11 @@ public abstract class Champion {
 
     CHAMP_STATE state;
 
-    public Champion() {}
+    public Champion() {
+        this.timer = new HenshinTimer(3);
+    }
     public Champion(@Nullable GeneralAbility _P, @Nullable GeneralAbility _Q, @Nullable GeneralAbility _W, @Nullable GeneralAbility _E, @Nullable GeneralAbility _R) {
+        this();
         this._P = _P;
         this._Q = _Q;
         this._W = _W;
@@ -93,6 +100,9 @@ public abstract class Champion {
         nbt = _W.saveNBT("league_of_minecraft.ability.w",nbt);
         nbt = _E.saveNBT("league_of_minecraft.ability.e",nbt);
         nbt = _R.saveNBT("league_of_minecraft.ability.r",nbt);
+    
+        nbt.putString("league_of_minecraft.champion.henshinname", henshinName);
+        nbt = timer.saveNBT("league_of_minecraft.champion", nbt);
 
         return nbt;
     }
@@ -103,6 +113,10 @@ public abstract class Champion {
         _W.loadNBT("league_of_minecraft.ability.w", nbt);
         _E.loadNBT("league_of_minecraft.ability.e", nbt);
         _R.loadNBT("league_of_minecraft.ability.r", nbt);
+
+        henshinName = nbt.getString("league_of_minecraft.champion.henshinname");
+        timer.loadNBT("league_of_minecraft.champion", nbt);
+
     }
 
     public void cooldownWait(Long time) {
@@ -142,6 +156,14 @@ public abstract class Champion {
     }
     public void set_R(GeneralAbility ga) {
         this._R = ga;
+    }
+
+    public String getName() {
+        return henshinName;
+    }
+
+    public HenshinTimer getTimer() {
+        return timer;
     }
 
 }

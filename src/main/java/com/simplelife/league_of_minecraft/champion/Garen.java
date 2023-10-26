@@ -3,6 +3,8 @@ package com.simplelife.league_of_minecraft.champion;
 public class Garen extends Champion {
     
     public Garen() {
+
+        super();
         
         _P = new GeneralAbility(0, ABILITY_TYPE.PASSIVE) {
 
@@ -54,6 +56,7 @@ public class Garen extends Champion {
             
         };
 
+        henshinName = "Garen";
 
     }
     

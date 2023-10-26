@@ -1,13 +1,12 @@
 package com.simplelife.league_of_minecraft.champion;
 
-import java.util.function.Consumer;
-import java.util.function.Supplier;
+import com.simplelife.league_of_minecraft.util.Variables;
 
 import net.minecraft.nbt.CompoundTag;
 
 public class GeneralAbility implements IAbility {
 
-    private static final long COOLDOWN_MULTIPLYER_TO_SECOND = 20;
+    
     boolean isCast = false;
     long cooldown = 0;
     long gameTick = 0;
@@ -15,7 +14,7 @@ public class GeneralAbility implements IAbility {
 
     public GeneralAbility() {}
     public GeneralAbility(long cool, ABILITY_TYPE tp) {
-        cooldown = cool * COOLDOWN_MULTIPLYER_TO_SECOND;
+        cooldown = cool * Variables.COOLDOWN_MULTIPLYER_TO_SECOND;
         type = tp;
     }
     
@@ -36,6 +35,7 @@ public class GeneralAbility implements IAbility {
         // nbt.putString(mapName + ".ability_type", type.toString());
         nbt.putLong(mapName + ".gametick", gameTick);
         nbt.putBoolean(mapName + ".iscast", isCast);
+        // nbt.putString(mapName + ".name", "Garen");
         
         return nbt;
     }
@@ -61,7 +61,7 @@ public class GeneralAbility implements IAbility {
     }
 
     public float getCooldownSecond(long time) {
-        return (float) (cooldown + gameTick - time) / (float) COOLDOWN_MULTIPLYER_TO_SECOND;
+        return (float) (cooldown + gameTick - time) / (float) Variables.COOLDOWN_MULTIPLYER_TO_SECOND;
     }
 
     public void refresh(Long time) {
