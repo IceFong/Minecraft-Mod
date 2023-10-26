@@ -1,6 +1,7 @@
 package com.simplelife.league_of_minecraft.advance_items;
 
 import com.simplelife.league_of_minecraft.MainMod;
+import com.simplelife.league_of_minecraft.champion.Garen;
 
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -19,6 +20,12 @@ public class AdvanceItemRegistry {
     public static final RegistryObject<Item> GAREN_ITEM = ITEMS.register("garen_item", () -> 
         new GarenItem( new Item.Properties().stacksTo(1) ) 
     );
+
+    public static final RegistryObject<Item> GAREN_HENSHIN_ITEM = ITEMS.register("garen_henshin_item", () -> 
+        new HenshinItem( new Item.Properties().stacksTo(1), new Garen() )
+    );
+
+    
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

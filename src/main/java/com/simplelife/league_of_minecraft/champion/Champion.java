@@ -2,6 +2,8 @@ package com.simplelife.league_of_minecraft.champion;
 
 import javax.annotation.Nullable;
 
+import org.jetbrains.annotations.NotNull;
+
 import net.minecraft.nbt.CompoundTag;
 
 public abstract class Champion {
@@ -107,16 +109,19 @@ public abstract class Champion {
         return nbt;
     }
 
-    public void load(CompoundTag nbt) {
-        _P.loadNBT("league_of_minecraft.ability.p", nbt);
-        _Q.loadNBT("league_of_minecraft.ability.q", nbt);
-        _W.loadNBT("league_of_minecraft.ability.w", nbt);
-        _E.loadNBT("league_of_minecraft.ability.e", nbt);
-        _R.loadNBT("league_of_minecraft.ability.r", nbt);
+    public static Champion load(@NotNull CompoundTag nbt) {
+        Champion champion = new Champion(){};
 
-        henshinName = nbt.getString("league_of_minecraft.champion.henshinname");
-        timer.loadNBT("league_of_minecraft.champion", nbt);
+        champion._P.loadNBT("league_of_minecraft.ability.p", nbt);
+        champion._Q.loadNBT("league_of_minecraft.ability.q", nbt);
+        champion._W.loadNBT("league_of_minecraft.ability.w", nbt);
+        champion._E.loadNBT("league_of_minecraft.ability.e", nbt);
+        champion._R.loadNBT("league_of_minecraft.ability.r", nbt);
 
+        champion.henshinName = nbt.getString("league_of_minecraft.champion.henshinname");
+        champion.timer.loadNBT("league_of_minecraft.champion", nbt);
+
+        return champion;
     }
 
     public void cooldownWait(Long time) {
