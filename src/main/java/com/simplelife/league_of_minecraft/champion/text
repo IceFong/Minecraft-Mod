@@ -1,0 +1,16 @@
+- CompoundTag (nbt)
+    - 1. long a (league_of_minecraft.ability.p.gametick)
+    - 2. bool a
+    - 3. string name
+    - 4. long b
+    - 5. bool b
+    - 6. string name b
+    - 4. long c
+    - 5. bool c
+    - 6. string name c
+    - 4. long d
+    - 5. bool d
+    - 6. string name d
+    - 4. long b
+    - 5. bool b
+    - 6. string name b
